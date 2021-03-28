@@ -7,7 +7,8 @@ docker build -t jimmy_locust .
 
 docker-compose up --scale worker=4
 
-三、配置试图
+三、配置性能监控试图
+
 1.输入http://localhost:9090打开prometheus
 
 2.prometheus中输入up再Execute
