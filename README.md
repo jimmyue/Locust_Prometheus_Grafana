@@ -3,9 +3,13 @@
 docker build -t jimmy_locust .
 
 
+
+
 #执行docker-compose.yml文件，worker跑4个，其他跑1个
 
 docker-compose up --scale worker=4
+
+
 
 
 
