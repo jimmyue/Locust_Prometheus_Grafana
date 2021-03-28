@@ -1,0 +1,36 @@
+#prometheus_exporter.py收集locust数据
+#locustfile.py为性能测试脚本
+
+version: '3'
+
+services:
+  master:
+    image: jimmy_locust
+    ports:
+     - "8089:8089"
+    volumes:
+      - /jimmy/locust_work:/mnt/locust
+    command: -f /mnt/locust/prometheus_exporter.py --master
+  
+  worker:
+    image: locustio/locust
+    volumes:
+      - /jimmy/locust_work:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host master
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+     - "9100:9100"
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+     - "9090:9090"
+    volumes:
+      - /jimmy/locust_work/prometheus.yml:/etc/prometheus/prometheus.yml
+      
+  grafana:
+    image: grafana/grafana
+    ports:
+     - "3000:3000"
