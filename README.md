@@ -1,19 +1,13 @@
-#code目录下执行，Dockerfile生成新的镜像 
+一、code目录下执行，Dockerfile生成新的镜像 
 
 docker build -t jimmy_locust .
 
 
-
-
-#执行docker-compose.yml文件，worker跑4个，其他跑1个
+二、执行docker-compose.yml文件，worker跑4个，其他跑1个
 
 docker-compose up --scale worker=4
 
-
-
-
-
-#配置试图
+三、配置试图
 1.输入http://localhost:9090打开prometheus
 
 2.prometheus中输入up再Execute
